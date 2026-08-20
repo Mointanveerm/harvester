@@ -29,11 +29,11 @@ assert m, "onCreate not found in " + path
 
 body = m.group(1)
 
-lm = re.search(r"\.locals (\d+)", body)
-assert lm, "no .locals in onCreate"
+lm = re.search(r"\.registers (\d+)", body)
+assert lm, "no .registers in onCreate"
 
 n = int(lm.group(1))
-body = body[:lm.start()] + ".locals %d" % (n + 2) + body[lm.end():]
+body = body[:lm.start()] + ".registers %d" % (n + 2) + body[lm.end():]
 
 v = "v%d" % n
 v2 = "v%d" % (n + 1)
