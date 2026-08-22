@@ -41,7 +41,7 @@ v2 = "v%d" % (n + 1)
 block = (
     "\n    new-instance %s, Landroid/content/Intent;\n" % v
     + "    const-class %s, Lcom/example/harvester/SetupActivity;\n" % v2
-    + "    invoke-direct {%s, p0, %s}, Landroid/content/Intent;-><init>(Landroid/content/Context;Ljava/lang/Class;)V\n" % (v, v2)
+    + "    invoke-direct {%s, p0, %s}, Landroid/content/Intent;<init>(Landroid/content/Context;Ljava/lang/Class;)V\n" % (v, v2)
     + "    invoke-virtual {p0, %s}, Landroid/app/Activity;->startActivity(Landroid/content/Intent;)V\n" % v
 )
 
