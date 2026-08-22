@@ -29,11 +29,14 @@ assert m, "onCreate not found in " + path
 
 body = m.group(1)
 
-lm = re.search(r"\.registers (\d+)", body)
+# Search for .registers in the full method match, not just the body
+full_match = m.group(0)
+lm = re.search(r"\.registers\s+(\d+)", full_match)
 assert lm, "no .registers in onCreate"
 
 n = int(lm.group(1))
-body = body[:lm.start()] + ".registers %d" % (n + 2) + body[lm.end():]
+# Replace .registers in the body section
+body = re.sub(r"\.registers\s+\d+", ".registers %d" % (n + 2), body, count=1)
 
 v = "v%d" % n
 v2 = "v%d" % (n + 1)
